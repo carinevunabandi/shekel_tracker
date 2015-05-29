@@ -1,0 +1,13 @@
+test:
+  adapter:  mysql2
+  pool:     20
+  database: shekel_tracker_test
+  username: shekel_tracker
+  password: shekel_tracker
+
+development:
+  adapter:  mysql2
+  pool:     20
+  database: shekel_tracker_development
+  username: shekel_tracker
+  password: shekel_tracker
