@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 gem 'activerecord'
 gem 'sinatra'
 gem 'sinatra-activerecord'
+gem 'rake'
 
 
 group :development, :test do
