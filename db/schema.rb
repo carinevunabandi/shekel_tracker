@@ -11,11 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150529160651) do
+ActiveRecord::Schema.define(version: 20150602143208) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name",        limit: 255
     t.string "description", limit: 255
+  end
+
+  create_table "costs", force: :cascade do |t|
+    t.integer  "price",          limit: 4
+    t.text     "description",    limit: 65535
+    t.string   "category_id",    limit: 255
+    t.datetime "time_period_id"
+  end
+
+  create_table "time_periods", force: :cascade do |t|
+    t.datetime "from", null: false
+    t.datetime "to",   null: false
   end
 
 end
