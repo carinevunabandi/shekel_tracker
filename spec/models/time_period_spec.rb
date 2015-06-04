@@ -1,5 +1,5 @@
 require 'spec_helper'
 
-describe Period do
+describe TimePeriod do
 
 end
