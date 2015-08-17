@@ -1,3 +1,7 @@
+Given "I am on the homepage" do
+  visit "/"
+end
+
 When "I visit the homepage" do
   visit "/"
 end
