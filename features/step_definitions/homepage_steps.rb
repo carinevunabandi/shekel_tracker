@@ -7,9 +7,9 @@ When "I visit the homepage" do
 end
 
 Then "I should see 'this month's budget' tab" do
-  expect(page.body).to have_content("This month's budget")
+  expect(page.body).to have_content("This Month's Budget")
 end
 
 Then "I should see 'View previous budgets' tab" do
-  expect(page.body).to have_content("View previous budgets")
+  expect(page.body).to have_content("View Previous Budgets")
 end
