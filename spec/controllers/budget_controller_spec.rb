@@ -23,7 +23,7 @@ describe 'Viewing details about the current budget' do
   end
 
   it 'retrieves the total for all expenses so far' do
-    allow(Cost).to receive(:total_costs_for_period).and_return(30)
+    allow(Cost).to receive(:total_for_period).and_return(30)
     get '/view_current'
     expect(last_response.body).to match(/30/)
   end
