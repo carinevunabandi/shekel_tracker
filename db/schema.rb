@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150818133306) do
+ActiveRecord::Schema.define(version: 20150820103455) do
 
   create_table "budgets", force: :cascade do |t|
     t.integer "time_period_id", limit: 4
@@ -25,16 +25,16 @@ ActiveRecord::Schema.define(version: 20150818133306) do
   end
 
   create_table "costs", force: :cascade do |t|
-    t.integer  "price",          limit: 4
-    t.text     "description",    limit: 65535
-    t.string   "category_id",    limit: 255
-    t.integer  "time_period_id", limit: 4
-    t.datetime "date"
+    t.integer "price",          limit: 4
+    t.text    "description",    limit: 65535
+    t.string  "category_id",    limit: 255
+    t.integer "time_period_id", limit: 4
+    t.date    "date"
   end
 
   create_table "time_periods", force: :cascade do |t|
-    t.datetime "from", null: false
-    t.datetime "to",   null: false
+    t.date "from", null: false
+    t.date "to",   null: false
   end
 
 end
