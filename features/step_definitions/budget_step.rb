@@ -4,10 +4,10 @@ Given "there are costs for the current month" do
   category_1 = Category.create(name:"Transportation", description:"Anyting travel-related")
   category_2 = Category.create(name:"Utility",        description:"Any fixed/recurrent costs such as utility bills")
   category_3 = Category.create(name:"Food",           description:"Food")
-  cost_1 = Cost.create(price:10, description:"Water bill",       category_id:category_2.id, time_period_id:time_period.id, date:"15-June-1015")
-  cost_2 = Cost.create(price:5,  description:"Monthly bus pass", category_id:category_1.id, time_period_id:time_period.id, date:"3-June-1015")
-  cost_3 = Cost.create(price:3,  description:"Taxi to Station",  category_id:category_1.id, time_period_id:time_period.id, date:"9-June-1015")
-  cost_4 = Cost.create(price:2,  description:"Fish and Chips",   category_id:category_3.id, time_period_id:time_period.id, date:"9-June-1015")
+  cost_1 = Cost.create(price:10, description:"Water bill",       category_id:category_2.id, time_period_id:time_period.id, date:"15-Jun-1015")
+  cost_2 = Cost.create(price:5,  description:"Monthly bus pass", category_id:category_1.id, time_period_id:time_period.id, date:"3-Jun-1015")
+  cost_3 = Cost.create(price:3,  description:"Taxi to Station",  category_id:category_1.id, time_period_id:time_period.id, date:"9-Jun-1015")
+  cost_4 = Cost.create(price:2,  description:"Fish and Chips",   category_id:category_3.id, time_period_id:time_period.id, date:"9-Jun-1015")
 end
 
 When "I click on this month's budget's link" do
@@ -33,5 +33,11 @@ And "I should see the total spending per category" do
 end
 
 And "I should see the list of expenses during that period of time" do
-  pending
+  expect(page.body).to have_content("Water bill")
+  expect(page.body).to have_content("15-Jun-1015")
+  expect(page.body).to have_content("Monthly bus pass")
+  expect(page.body).to have_content("3-Jun-1015")
+  expect(page.body).to have_content("Taxi to Station")
+  expect(page.body).to have_content("9-Jun-1015")
+  expect(page.body).to have_content("Fish and Chips")
 end
