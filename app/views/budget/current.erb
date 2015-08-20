@@ -1,24 +1,36 @@
 <div>
-  Budget Amount: <%= !@current_budget.nil? ? @current_budget.amount : "Undefined" %>
-  Spent so far:  <%= !@total_costs.nil? ? @total_costs : "Undefined" %>
-  Status:        <%= !@status.nil? ? @status+" budget" : "Undefined" %>
-  <h3>Expenses</h3>
-  <table>
-   <tr>
-     <th>Expense</th>
-     <th>Price</th>
-     <th>Date</th>
-     <th>Category</th>
-   </tr>
-   <% if !@costs.nil? %>
-     <% @costs.each do |cost| %>
-       <tr>
-         <td><%=cost.description%></td>
-         <td><%=cost.price%></td>
-         <td><%=cost.date.strftime('%d-%b-%Y')%></td>
-         <td><%=cost.category%></td>
-       </tr>
-     <%end%>
-   <%end%>
-  </table>
+  <% if !@current_budget.nil? %>
+    Budget Amount: <%= @current_budget.amount %>
+    Spent so far:  <%= @total_costs%>
+    Status:        <%= !@status.nil? ? @status+" budget" : "Undefined" %>
+    Spending per Categories:
+    <% if @totals_per_categories.nil? %>
+      No expenses to show
+    <%else%>
+      <% @totals_per_categories.each do |key, value| %>
+        <%=key%>: <%=value%>
+      <%end%>
+    <%end%>
+    <h3>Expenses</h3>
+    <table>
+      <tr>
+        <th>Expense</th>
+        <th>Price</th>
+        <th>Date</th>
+        <th>Category</th>
+      </tr>
+      <% if !@costs.nil? %>
+        <% @costs.each do |cost| %>
+          <tr>
+            <td><%=cost.description%></td>
+            <td><%=cost.price%></td>
+            <td><%=cost.date.strftime('%d-%b-%Y')%></td>
+            <td><%=cost.category%></td>
+          </tr>
+        <%end%>
+      <%end%>
+    </table>
+  <% else %>
+    No budget defined yet! Create a new one <a href="/budget/new">here</a>
+  <% end %>
 </div>
