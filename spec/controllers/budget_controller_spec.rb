@@ -10,10 +10,12 @@ describe 'Viewing details about the current budget' do
 
   before do
     allow(Budget).to receive(:find_by).with(current: true).and_return(budget_2)
-    allow(Cost).to receive(:total_costs_for_period)
+    allow(Cost).to receive(:total_for_period)
+    allow(StatusTeller).to receive(:current)
   end
 
   it 'retrieves the current budget' do
+    expect(Budget).to receive(:find_by).and_return(budget_2)
     get '/view_current'
   end
 
@@ -26,5 +28,11 @@ describe 'Viewing details about the current budget' do
     allow(Cost).to receive(:total_for_period).and_return(30)
     get '/view_current'
     expect(last_response.body).to match(/30/)
+  end
+
+  it 'retrieves the status of the current budget' do
+    allow(StatusTeller).to receive(:current).and_return("Within")
+    get '/view_current'
+    expect(last_response.body).to match(/Within budget/)
   end
 end

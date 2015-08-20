@@ -1,4 +1,5 @@
 <div>
   Budget Amount: <%= !@current_budget.nil? ? @current_budget.amount : "Undefined" %>
   Spent so far:  <%= !@total_costs.nil? ? @total_costs : "Undefined" %>
+  Status:        <%= !@status.nil? ? @status+" budget" : "Undefined" %>
 </div>
