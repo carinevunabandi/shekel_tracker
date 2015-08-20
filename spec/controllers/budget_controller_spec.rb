@@ -9,6 +9,7 @@ describe 'Viewing details about the current budget' do
     allow(Cost).to receive(:total_for_period)
     allow(StatusTeller).to receive(:current)
     allow(Cost).to receive(:expenses_during)
+    allow(Cost).to receive(:totals_per_categories)
   end
 
   it 'retrieves the current budget' do
@@ -29,6 +30,11 @@ describe 'Viewing details about the current budget' do
 
   it 'retrieves all costs occured during the current budget' do
     expect(Cost).to receive(:expenses_during).with(budget.time_period_id)
+    get '/view_current'
+  end
+
+  it 'retrieves the total spending per category given a budget period' do
+    expect(Cost).to receive(:totals_per_categories).with(budget.time_period_id)
     get '/view_current'
   end
 end
