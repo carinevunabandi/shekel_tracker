@@ -2,4 +2,23 @@
   Budget Amount: <%= !@current_budget.nil? ? @current_budget.amount : "Undefined" %>
   Spent so far:  <%= !@total_costs.nil? ? @total_costs : "Undefined" %>
   Status:        <%= !@status.nil? ? @status+" budget" : "Undefined" %>
+  <h3>Expenses</h3>
+  <table>
+   <tr>
+     <th>Expense</th>
+     <th>Price</th>
+     <th>Date</th>
+     <th>Category</th>
+   </tr>
+   <% if !@costs.nil? %>
+     <% @costs.each do |cost| %>
+       <tr>
+         <td><%=cost.description%></td>
+         <td><%=cost.price%></td>
+         <td><%=cost.date%></td>
+         <td><%=cost.category%></td>
+       </tr>
+     <%end%>
+   <%end%>
+  </table>
 </div>
