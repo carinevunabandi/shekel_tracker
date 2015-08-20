@@ -10,4 +10,8 @@ class Cost < ActiveRecord::Base
     end
     prices.reduce(:+)
   end
+
+  def self.expenses_during(time_period_id)
+    Cost.where(time_period_id: time_period_id).to_a
+  end
 end
