@@ -11,7 +11,7 @@ Given "there are costs for the current month" do
 end
 
 When "I click on this month's budget's link" do
-  click_link("This Month's Budget")
+  click_link("Current Budget")
 end
 
 Then "I should see the monthly budget amount" do
