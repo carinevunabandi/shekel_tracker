@@ -16,19 +16,14 @@
 }
 
 .navbar-nav > li > a {
-  margin-top: 50px;
+  margin-top: 90px;
   font-size: 150%;
   color: #1F1C00;
 }
 
 .navbar-nav > li > a:hover {
-  color: #FFED9A;
-  background-color: grey;
-}
-
-.navbar-nav > .active > a {
-  color: white;
-  background-color: black;
+  color: #E8880A;
+  background-color: #F6FFD2;
 }
 
 .navbar-brand {
@@ -42,7 +37,7 @@
   font-size: 200%;
 }
 
-#current_budget_content {
+#content {
   font-size: 150%;
 }
 
