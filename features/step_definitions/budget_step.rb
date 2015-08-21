@@ -9,6 +9,13 @@ Given "there are costs for the current month" do
   Cost.create(price:3,  description:"Taxi to Station",  category_id:category_1.id, time_period_id:time_period.id, date:"9-Jun-1015")
   Cost.create(price:2,  description:"Fish and Chips",   category_id:category_3.id, time_period_id:time_period.id, date:"9-Jun-1015")
 end
+
+Given "There is no current budget" do
+  time_period_1 = TimePeriod.create(from:"1-May-2015", to:"31-May-2015")
+  time_period_2 = TimePeriod.create(from:"1-Jul-2015", to:"30-Jul-2015")
+  Budget.create(time_period_id: time_period_1.id, amount: 100, current: false)
+  Budget.create(time_period_id: time_period_2.id, amount: 200, current: false)
+  expect(Budget.where(current: true)).to eq []
 end
 
 When "I click on this month's budget's link" do
@@ -41,4 +48,16 @@ And "I should see the list of expenses during that period of time" do
   expect(page.body).to have_content("Taxi to Station")
   expect(page.body).to have_content("9-Jun-1015")
   expect(page.body).to have_content("Fish and Chips")
+end
+
+When "I want to create a new one" do
+  pending
+end
+
+And "I enter details for the new budget" do
+  pending
+end
+
+Then "The new budget should be created" do
+  pending
 end
