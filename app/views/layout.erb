@@ -7,17 +7,36 @@
     <meta name="viewport" content="width=device-width", intial-scale=1.0">
     <meta name="author" content="Carine Vunabandi">
     <meta content="Type=text/html;charset=utf8" http-equiv="Content-Type">
+
+    <link href="/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="/css/custom.css" rel="stylesheet" media="screen">
+    <script href="/js/bootstrap.min.js" rel="stylesheet" media="screen"></script>
   </head>
   <body>
-    <div>
-      <h1>Shekel Tracker</h1>
-      <h3>Keeping count of your bucks</h3>
+    <nav class=navbar role="navigation">
+    <div class="container" id="navigation">
+      <a class="navbar-brand" href="/"><font color="#68A23E">Shekel </font><font color="#E8880A">Tracker</font></a>
+      <div class="collapse navbar-collapse navbar-ex1-collapse">
+        <ul class="nav navbar-nav pull-right">
+          <li><a href="/home">Home</a></li>
+          <li><a href="/view_current">Current Budget</a></li>
+          <li><a href="/view_previous">Previous Budgets</a></li>
+        </ul>
+      </div>
+      <hr>
+
+      <div class="container" id="content">
+        <%= yield %>
+      </div>
+
+      <div class="footer"
+        <div class="container">
+          <hr>
+          <p style="text-align:right; padding-right:20px">
+          Contact: <a href="mailto:carinevun@yahoo.com?Subject=Shekel Tracker" rel="author">carinevun@yahoo.com</a>
+          </p>
+        </div>
+      </div>
     </div>
-    <div>
-      <ul>
-        <li><a href="/view_current">This Month's Budget</a></li>
-        <li><a href="/view_previous">View Previous Budgets</a></li>
-      </ul>
-    </div>
-    <%= yield %>
+  </body>
 </html>

@@ -1,0 +1,57 @@
+.container {
+  width: 1000px;
+}
+
+.footer {
+  padding: 10px 0;
+}
+
+.footer p {
+  margin-top: 10px;
+}
+
+.footer {
+  background-color: white;
+  border-color: #554477;
+}
+
+.navbar-nav > li > a {
+  margin-top: 50px;
+  font-size: 150%;
+  color: #1F1C00;
+}
+
+.navbar-nav > li > a:hover {
+  color: #FFED9A;
+  background-color: grey;
+}
+
+.navbar-nav > .active > a {
+  color: white;
+  background-color: black;
+}
+
+.navbar-brand {
+  padding: 15px 15px;
+  opacity: .9;
+  filter:alpha(opacity=90);
+  transition: opacity .4s ease-in-out;
+}
+
+.navbar-brand {
+  font-size: 200%;
+}
+
+#current_budget_content {
+  font-size: 150%;
+}
+
+.footer {
+  font-size: 120%;
+}
+
+.navbar-brand:hover,
+.navbar-brand:active {
+  opacity: 1;
+  filter: alpha(opacity=100);
+}
