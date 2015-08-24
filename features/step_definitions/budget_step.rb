@@ -66,6 +66,7 @@ Then "The new budget should be created" do
   expect(Budget.where(current: true).pluck(:amount)).to eq [700]
 end
 
-And "I should see a confirmation page for it" do
-  pending
+And "I should see a confirmation text and be redirected to viewing it" do
+  expect(page.body).to have_content("Budget created")
+  expect(current_path).to eq("/view_current")
 end
