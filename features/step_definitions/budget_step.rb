@@ -54,14 +54,15 @@ When "I want to create a new one" do
   visit '/budget/new'
 end
 
-And "I enter details for the new budget" do
+And "I enter details for the new budget and submit" do
   fill_in('from',    with: '1-Aug-2015')
   fill_in('to',      with: '31-Aug-2015')
   fill_in('amount', with: '700')
+  click_button('Create budget')
 end
 
 Then "The new budget should be created" do
-  expect(TimePeriod.where(from: '1-08-2015', to: '31-08-2015')).not_to eq []
+  expect(TimePeriod.where(from: '2015-08-01', to: '2015-08-31')).not_to eq []
   expect(Budget.where(current: true).pluck(:amount)).to eq [700]
 end
 
