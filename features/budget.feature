@@ -10,7 +10,8 @@ Feature: Anything to do with displaying/managing actual monthly budgets
     And I should see the list of expenses during that period of time
     And I should see the total spending per category
 
-  Scenario: Adding a new budget
+    @wip
+  Scenario: Creating a new budget
     Given There is no current budget
     When  I want to create a new one
     And   I enter details for the new budget
