@@ -10,4 +10,13 @@ class ShekelTracker < Sinatra::Base
     end
     erb :'budget/current'
   end
+
+  get '/budget/new' do
+    erb :'budget/new'
+  end
+
+  post '/budget/new' do
+    @time_period = TimePeriod.create(from: params['from'], to: params['to'])
+    Budget.create(time_period_id: @time_period.id, amount: params['amount'], current: true)
+  end
 end
