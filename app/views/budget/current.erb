@@ -1,9 +1,17 @@
 <div id="current_budget_content">
   <% if !@current_budget.nil? %>
     Budget Amount: <%= @current_budget.amount %>
+  <br />
+  <br />
     Spent so far:  <%= @total_costs%>
+  <br />
+  <br />
     Status:        <%= !@status.nil? ? @status+" budget" : "Undefined" %>
+  <br />
+  <br />
     Spending per Categories:
+  <br />
+  <br />
     <% if @totals_per_categories.nil? %>
       No expenses to show
     <%else%>
