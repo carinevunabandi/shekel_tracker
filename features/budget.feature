@@ -16,3 +16,4 @@ Feature: Anything to do with displaying/managing actual monthly budgets
     When  I want to create a new one
     And   I enter details for the new budget
     Then  The new budget should be created
+    And   I should see a confirmation page for it
