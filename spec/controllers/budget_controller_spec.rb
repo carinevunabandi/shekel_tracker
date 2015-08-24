@@ -75,4 +75,10 @@ describe 'POST /budget/new' do
     expect(Budget).to receive(:create)
     post '/budget/new', params
   end
+
+  it "should redirect to the current budget page and shows a flash message" do
+    post '/budget/new', params
+    follow_redirect!
+    expect(last_response).to match(/Budget created/)
+  end
 end
