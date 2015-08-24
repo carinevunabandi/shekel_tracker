@@ -4,6 +4,7 @@ gem 'activerecord'
 gem 'mysql2'
 gem 'sinatra'
 gem 'sinatra-activerecord'
+gem 'sinatra-flash'
 gem 'rake'
 
 
