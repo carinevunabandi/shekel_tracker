@@ -17,7 +17,7 @@ describe Cost do
     end
 
     it 'returns zero if there are no costs for the given period of time' do
-      allow(Cost).to receive(:where).and_return(nil)
+      allow(Cost).to receive(:where).and_return([])
       expect(Cost.total_for_period(1)).to eq 0
     end
   end

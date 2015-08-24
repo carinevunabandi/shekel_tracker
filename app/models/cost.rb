@@ -3,9 +3,9 @@ class Cost < ActiveRecord::Base
   belongs_to :time_period
 
   def self.total_for_period(time_period_id)
-    costs = Cost.where(time_period_id: time_period_id)
+    costs = Cost.where(time_period_id: time_period_id).to_a
     prices = []
-    if !costs.nil?
+    if costs != []
       prices = costs.map(&:price)
       prices.reduce(:+)
     else
