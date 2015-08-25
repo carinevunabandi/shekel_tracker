@@ -18,6 +18,7 @@ class ShekelTracker < Sinatra::Base
   post '/budget/new' do
     @time_period = TimePeriod.create(from: params['from'], to: params['to'])
     Budget.create(time_period_id: @time_period.id, amount: params['amount'], current: true)
-    redirect :'/budget/current'
+    flash[:success] = "Budget created"
+    redirect :'/view_current'
   end
 end
