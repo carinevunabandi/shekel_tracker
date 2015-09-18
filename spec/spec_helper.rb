@@ -6,7 +6,6 @@ require 'byebug'
 require 'capybara/rspec'
 require 'database_cleaner'
 
-
 RSpec.configure do |config|
   config.include Rack::Test::Methods
 
@@ -19,7 +18,6 @@ RSpec.configure do |config|
     DatabaseCleaner.clean
   end
 end
-
 
 def app
   ShekelTracker

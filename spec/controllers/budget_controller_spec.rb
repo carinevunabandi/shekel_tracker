@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe 'Viewing details about the current budget' do
-
   let(:budget)    { double(:current_budget, time_period_id: 2, amount: 600, current: true) }
 
   before do
@@ -53,14 +52,18 @@ describe 'POST /budget/new' do
       'amount' => '800' }
   end
 
-  let(:time_period) { TimePeriod.new(from: params['from'],
-                                     to:   params['to']) }
-  let(:budget)      { Budget.new(time_period_id: time_period.id,
-                                 amount:         params['amount'],
-                                 current:        true) }
+  let(:time_period) do
+    TimePeriod.new(from: params['from'],
+                   to:   params['to'])
+  end
+  let(:budget) do
+    Budget.new(time_period_id: time_period.id,
+               amount:         params['amount'],
+               current:        true)
+  end
 
   before do
-    allow(TimePeriod).to receive(:create).with(from: params['from'], to:params['to']).and_return(time_period)
+    allow(TimePeriod).to receive(:create).with(from: params['from'], to: params['to']).and_return(time_period)
     allow(Budget).to receive(:new).with(time_period_id: time_period.id,
                                         amount: params['amount'],
                                         current: true).and_return(time_period)
@@ -76,7 +79,7 @@ describe 'POST /budget/new' do
     post '/budget/new', params
   end
 
-  it "should redirect to the current budget page and shows a flash message" do
+  it 'should redirect to the current budget page and shows a flash message' do
     post '/budget/new', params
     follow_redirect!
     expect(last_response).to match(/Budget created/)
