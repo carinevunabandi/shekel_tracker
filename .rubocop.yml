@@ -1,0 +1,16 @@
+AllCops:
+  Exclude:
+  - 'db/**/*'
+  - 'Gemfile'
+  - 'vendor/**/*'
+
+Metrics/LineLength:
+  Max: 150
+
+Style/Documentation:
+ Enabled: false
+
+Style/PredicateName:
+  NamePrefixBlacklist:
+  - get_
+  - set_
