@@ -1,3 +1,4 @@
 config/*.yml
 db/*.yml
 log/*
+coverage
