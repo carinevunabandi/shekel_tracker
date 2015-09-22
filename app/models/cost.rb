@@ -4,7 +4,6 @@ class Cost < ActiveRecord::Base
 
   def self.total_for_period(time_period_id)
     costs = Cost.where(time_period_id: time_period_id).to_a
-    prices = []
     if costs != []
       prices = costs.map(&:price)
       prices.reduce(:+)
@@ -25,8 +24,6 @@ class Cost < ActiveRecord::Base
     hashed_bundled_cats_and_prices = Hash[bundled_cats_and_prices]
     Cost.aggregate_category_costs(hashed_bundled_cats_and_prices)
   end
-
-  private
 
   def self.aggregate_category_costs(expenses_per_category)
     expenses_per_category.each { |k, v| expenses_per_category[k] = v.reduce(:+) }

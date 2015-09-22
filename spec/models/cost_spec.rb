@@ -25,7 +25,7 @@ describe Cost do
   describe '.expenses_during' do
     it 'gets costs that occured during a given period of time' do
       allow(Cost).to receive(:where).and_return([cost_1, cost_3])
-      expect(Cost.expenses_during(1)).to eq ([cost_1, cost_3])
+      expect(Cost.expenses_during(1)).to eq [cost_1, cost_3]
     end
   end
 
