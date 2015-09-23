@@ -3,7 +3,7 @@ AllCops:
   - 'db/**/*'
   - 'Gemfile'
   - 'vendor/**/*'
-  - 'lib/tasks/ok.rake'
+  - 'lib/tasks/shekel_tracker_ok.rake'
 
 Metrics/LineLength:
   Max: 150

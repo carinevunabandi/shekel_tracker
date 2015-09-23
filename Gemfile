@@ -18,5 +18,6 @@ group :test do
   gem 'database_cleaner'
   gem 'rspec'
   gem 'rubocop'
+  gem 'sandi_meter'
   gem 'simplecov'
 end

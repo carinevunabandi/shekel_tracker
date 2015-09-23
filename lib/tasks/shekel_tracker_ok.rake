@@ -1,4 +1,4 @@
-task :ok do
+task :shekel_tracker_ok do
   red    = "\e[31m"
   yellow = "\e[33m"
   green  = "\e[32m"

@@ -3,5 +3,5 @@ if ENV['RACK_ENV'] != 'production'
 
   CLEAN.include 'log/**'
 
-  task default: [:clean, :rubocop, :spec, :'coverage:check_specs', :cucumber, :ok]
+  task default: [:clean, :rubocop, :sandi_meter, :spec, :'coverage:check_specs', :cucumber, :shekel_tracker_ok]
 end
