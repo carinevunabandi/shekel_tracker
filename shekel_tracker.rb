@@ -4,8 +4,8 @@ require 'byebug' if development?
 require 'sinatra'
 
 class ShekelTracker < Sinatra::Base
-  Dir[File.join(Sinatra::Application.root, 'app', 'controllers', '*.rb')].each { |f| require f }
-  Dir[File.join(Sinatra::Application.root, 'app', 'models',      '*.rb')].each { |f| require f }
+  Dir[File.join(Sinatra::Application.root, 'app', 'controllers', '*.rb')].each { |file| require file }
+  Dir[File.join(Sinatra::Application.root, 'app', 'models',      '*.rb')].each { |file| require file }
 
   enable :sessions
   register Sinatra::Flash

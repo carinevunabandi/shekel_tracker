@@ -1,0 +1,6 @@
+IrresponsibleModule:
+  enabled: false
+UncommunicativeVariableName:
+  enabled: true
+exclude_paths:
+  - db/migrate
