@@ -23,5 +23,6 @@ class ShekelTracker < Sinatra::Base
 
   get '/view_past' do
     @budgets = Budget.past
+    erb :'budget/list'
   end
 end

@@ -85,3 +85,14 @@ describe 'POST /budget/new' do
     expect(last_response).to match(/Budget created/)
   end
 end
+
+
+describe "Viewing list of past budgets" do
+  let(:budgets) { double(:budgets) }
+
+  it "loads all past budgets" do
+    allow(Budget).to receive(:past).and_return(budgets)
+    expect(Budget).to receive(:past).and_return(budgets)
+    get '/view_past'
+  end
+end
