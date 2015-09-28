@@ -1,15 +1,16 @@
+When "I view the homepage" do
+  @homepage = Homepage.new
+  @homepage.load
+end
+
 Given 'I am on the homepage' do
   visit '/'
 end
 
-When 'I visit the homepage' do
-  visit '/'
+Then "I see the 'current budget' tab" do
+  expect(@homepage).to have_link('Current Budget')
 end
 
-Then "I should see the 'current budget' tab" do
-  expect(page.body).to have_content('Current Budget')
-end
-
-Then "I should see 'previous budgets' tab" do
-  expect(page.body).to have_content('Previous Budgets')
+Then "I see 'past budgets' tab" do
+  expect(page.body).to have_link('Past Budgets')
 end
