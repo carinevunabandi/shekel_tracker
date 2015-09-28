@@ -1,4 +1,4 @@
-class PreviousBudgetsPage < SitePrism::Page
+class PastBudgetsPage < SitePrism::Page
 
   def has_row_for? budget
     has_css? "td", text: budget.date_text

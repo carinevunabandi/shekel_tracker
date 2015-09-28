@@ -3,8 +3,8 @@ class Homepage < SitePrism::Page
 
   element :previous_budgets_link, :link, "Previous Budgets"
 
-  def view_previous
+  def view_past
     previous_budgets_link.click
-    PreviousBudgetsPage.new
+    PastBudgetsPage.new
   end
 end

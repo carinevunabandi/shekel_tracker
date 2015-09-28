@@ -20,4 +20,8 @@ class ShekelTracker < Sinatra::Base
     flash[:success] = 'Budget created'
     redirect :'/view_current'
   end
+
+  get '/view_past' do
+    @budgets = Budget.past
+  end
 end

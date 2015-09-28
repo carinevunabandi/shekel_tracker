@@ -17,10 +17,10 @@ def overspent?(spending_limit, number)
   number*200 > spending_limit ? true : false
 end
 
-When "I view previous budgets" do
+When "I view past budgets" do
   @homepage = Homepage.new
   @homepage.load
-  @previous_budgets_page = @homepage.view_previous
+  @past_budgets_page = @homepage.view_past
 end
 
 Then "I see the list of all past budgets" do
