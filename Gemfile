@@ -16,6 +16,8 @@ group :test do
   gem 'cucumber'
   gem 'capybara'
   gem 'database_cleaner'
+  gem 'faker'
+  gem 'factory_girl'
   gem 'reek'
   gem 'rspec'
   gem 'roodi'
