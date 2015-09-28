@@ -1,3 +1,34 @@
+And "there are budgets in the database" do
+  @budgets = [[1, "1-Jan-2010", "31-Jan-2010"],
+              [2, "1-Feb-2010", "29-Feb-2010"],
+              [3, "1-Mar-2010", "31-Mar-2010"],
+              [4, "1-Apr-2010", "30-Apr-2010"],
+              [5, "1-May-2010", "31-May-2010"]].each do |number, from, to|
+                create(:budget, :previous_budget,
+                       spending_limit: 700,
+                       total_spending: number*200,
+                       overspent: overspent?(700, number),
+                       from: from,
+                       to: to)
+              end
+end
+
+def overspent?(spending_limit, number)
+  number*200 > spending_limit ? true : false
+end
+
+When "I view previous budgets" do
+  @homepage = Homepage.new
+  @homepage.load
+  @previous_budgets_page = @homepage.view_previous
+end
+
+Then "I see the list of all past budgets" do
+  @budgets.each do |budget|
+    expect(@previous_budgets_page).to have_row_for(budget)
+  end
+end
+
 Given 'there are costs for the current month' do
   time_period = TimePeriod.create(from: '1-June-2015', to: '30-June-2015')
   Budget.create(time_period_id: time_period.id, amount: 500, current: true)

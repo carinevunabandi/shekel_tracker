@@ -5,6 +5,7 @@ require File.expand_path('../../../shekel_tracker.rb', __FILE__)
 require 'byebug'
 require 'capybara/cucumber'
 require 'database_cleaner'
+require 'site_prism'
 
 DatabaseCleaner.strategy = :truncation
 

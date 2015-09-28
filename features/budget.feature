@@ -1,4 +1,11 @@
-Feature: Anything to do with displaying/managing actual monthly budgets
+Feature: Anything to do with budgets
+
+  Scenario: Viewing the list of all budgets
+    Given I am on the homepage
+    And   there are budgets in the database
+    When  I view previous budgets
+    Then  I see the list of all past budgets
+
 
   Scenario: Viewing the current month's budget
     Given there are costs for the current month
