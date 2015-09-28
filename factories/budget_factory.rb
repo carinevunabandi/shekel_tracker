@@ -8,7 +8,7 @@ FactoryGirl.define do
     to              "31-Jan-2010"
   end
 
-  trait :previous_budget do
+  trait :past_budget do
     current   false
   end
 end
