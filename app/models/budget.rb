@@ -7,4 +7,8 @@ class Budget < ActiveRecord::Base
     budget = Budget.where(time_period_id: time_period_id).first
     budget.amount
   end
+
+  def self.past
+    budgets = Budget.where(current: false)
+  end
 end
