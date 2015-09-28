@@ -11,14 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150928105234) do
+ActiveRecord::Schema.define(version: 20150928142803) do
 
   create_table "budgets", force: :cascade do |t|
-    t.integer "time_period_id", limit: 4
     t.float   "spending_limit", limit: 24
     t.boolean "current",        limit: 1
     t.float   "total_spending", limit: 24
     t.boolean "overspent",      limit: 1
+    t.date    "from"
+    t.date    "to"
   end
 
   create_table "categories", force: :cascade do |t|
@@ -32,11 +33,6 @@ ActiveRecord::Schema.define(version: 20150928105234) do
     t.string  "category_id", limit: 255
     t.date    "date"
     t.integer "budget_id",   limit: 4
-  end
-
-  create_table "time_periods", force: :cascade do |t|
-    t.date "from", null: false
-    t.date "to",   null: false
   end
 
 end
