@@ -1,6 +1,6 @@
 class Cost < ActiveRecord::Base
   belongs_to :category
-  belongs_to :time_period
+  belongs_to :budget
 
   def self.total_for_period(time_period_id)
     costs = Cost.where(time_period_id: time_period_id).to_a

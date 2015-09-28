@@ -1,3 +1,3 @@
 class TimePeriod < ActiveRecord::Base
-  has_many :cost
+  has_one :budget
 end
