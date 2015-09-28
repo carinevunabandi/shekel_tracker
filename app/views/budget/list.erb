@@ -1,0 +1,18 @@
+<div>
+  <table>
+    <tr>
+      <th>Period</th>
+      <th>Spending Limit</th>
+      <th>Total Spent</th>
+      <th>Overspent?</th>
+    </tr>
+    <% @budgets.each do |budget| %>
+      <tr>
+        <td><a href="budget/<%= budget.id %>"><%= "#{budget.from} - #{budget.to}" %></a></td>
+        <td><%= "£ #{budget.spending_limit}" %></td>
+        <td><%= "£ #{budget.total_spending}" %></td>
+        <td><%= budget.overspent ? "Yes" : "No" %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>

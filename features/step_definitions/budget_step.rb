@@ -1,10 +1,10 @@
 And "there are budgets in the database" do
   @budgets = [[1, "1-Jan-2010", "31-Jan-2010"],
-              [2, "1-Feb-2010", "29-Feb-2010"],
+              [2, "1-Feb-2010", "28-Feb-2010"],
               [3, "1-Mar-2010", "31-Mar-2010"],
               [4, "1-Apr-2010", "30-Apr-2010"],
-              [5, "1-May-2010", "31-May-2010"]].each do |number, from, to|
-                create(:budget, :previous_budget,
+              [5, "1-May-2010", "31-May-2010"]].map do |number, from, to|
+                create(:budget, :past_budget,
                        spending_limit: 700,
                        total_spending: number*200,
                        overspent: overspent?(700, number),
@@ -25,7 +25,7 @@ end
 
 Then "I see the list of all past budgets" do
   @budgets.each do |budget|
-    expect(@previous_budgets_page).to have_row_for(budget)
+    expect(@past_budgets_page).to have_row_for budget
   end
 end
 
