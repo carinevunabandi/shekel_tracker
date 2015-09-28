@@ -4,6 +4,7 @@ require 'byebug'
 require 'capybara/rspec'
 require 'database_cleaner'
 require 'simplecov'
+require 'factory_girl'
 
 SimpleCov.start do
   add_filter '/spec'
@@ -15,9 +16,11 @@ require File.expand_path('../../shekel_tracker.rb', __FILE__)
 
 RSpec.configure do |config|
   config.include Rack::Test::Methods
+  config.include FactoryGirl::Syntax::Methods
+  FactoryGirl.find_definitions
 
   config.before(:each) do
-    DatabaseCleaner.strategy = :transaction
+    DatabaseCleaner.strategy = :truncation
     DatabaseCleaner.start
   end
 
