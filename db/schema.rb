@@ -11,12 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150928094120) do
+ActiveRecord::Schema.define(version: 20150928105234) do
 
   create_table "budgets", force: :cascade do |t|
     t.integer "time_period_id", limit: 4
-    t.integer "amount",         limit: 4
+    t.float   "spending_limit", limit: 24
     t.boolean "current",        limit: 1
+    t.float   "total_spending", limit: 24
+    t.boolean "overspent",      limit: 1
   end
 
   create_table "categories", force: :cascade do |t|
