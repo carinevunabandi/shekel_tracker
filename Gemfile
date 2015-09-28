@@ -24,4 +24,5 @@ group :test do
   gem 'rubocop'
   gem 'sandi_meter'
   gem 'simplecov'
+  gem 'site_prism'
 end
