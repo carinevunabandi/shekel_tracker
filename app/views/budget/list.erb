@@ -1,5 +1,5 @@
 <div>
-  <table>
+  <table class="table table-striped">
     <tr>
       <th>Period</th>
       <th>Spending Limit</th>
@@ -8,7 +8,7 @@
     </tr>
     <% @budgets.each do |budget| %>
       <tr>
-        <td><a href="budget/<%= budget.id %>"><%= "#{budget.from} - #{budget.to}" %></a></td>
+        <td><a href="budget/<%= budget.id %>"><%= "#{budget.from.strftime('%d-%b-%Y')} => #{budget.to.strftime('%d-%b-%Y')}" %></a></td>
         <td><%= "£ #{budget.spending_limit}" %></td>
         <td><%= "£ #{budget.total_spending}" %></td>
         <td><%= budget.overspent ? "Yes" : "No" %></td>
