@@ -6,6 +6,7 @@ require 'sinatra'
 class ShekelTracker < Sinatra::Base
   Dir[File.join(Sinatra::Application.root, 'app', 'controllers', '*.rb')].each { |file| require file }
   Dir[File.join(Sinatra::Application.root, 'app', 'models',      '*.rb')].each { |file| require file }
+  Dir[File.join(Sinatra::Application.root, 'app', 'facades',      '*.rb')].each { |file| require file }
 
   enable :sessions
   register Sinatra::Flash
