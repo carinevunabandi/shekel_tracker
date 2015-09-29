@@ -29,16 +29,49 @@ Then "I see the list of all past budgets" do
   end
 end
 
-Given 'there are costs for the current month' do
-  time_period = TimePeriod.create(from: '1-June-2015', to: '30-June-2015')
-  Budget.create(time_period_id: time_period.id, amount: 500, current: true)
-  category_1 = Category.create(name: 'Transportation', description: 'Anyting travel-related')
-  category_2 = Category.create(name: 'Utility',        description: 'Any fixed/recurrent costs such as utility bills')
-  category_3 = Category.create(name: 'Food',           description: 'Food')
-  Cost.create(price: 10, description: 'Water bill',       category_id: category_2.id, time_period_id: time_period.id, date: '15-Jun-1015')
-  Cost.create(price: 5,  description: 'Monthly bus pass', category_id: category_1.id, time_period_id: time_period.id, date: '3-Jun-1015')
-  Cost.create(price: 3,  description: 'Taxi to Station',  category_id: category_1.id, time_period_id: time_period.id, date: '9-Jun-1015')
-  Cost.create(price: 2,  description: 'Fish and Chips',   category_id: category_3.id, time_period_id: time_period.id, date: '9-Jun-1015')
+Given "there is a current budget" do
+  @budget = create(:budget)
+end
+
+And "there are costs for the current budget" do
+  @categories = ["Transport", "Bills", "Entertainment", "Food", "Donations"].map do |cat_name|
+    create(:category, name: cat_name)
+  end
+
+  @costs = (1..10).map do |number|
+    number <= 5 ? index = number : index = number - 5
+    create(:cost, price: number*2, category_id: @categories[index].id , budget_id: @budget.id)
+  end
+end
+
+When "I view the current budget" do
+  @homepage = Homepage.new
+  @homepage.load
+  @current_budget_page = @homepage.view_current
+end
+
+Then "I see the spending limit for that budget" do
+  expect(@current_budget_page).to have_spending_limit_for @budget
+end
+
+And  "I see the current budget's time period" do
+  expect(@current_budget_page).to have_time_period_for @budget
+end
+
+And  "I see the total amount spent so far" do
+  expect(@current_budget_page).to have_total_spending_for @budget
+end
+
+And  "I see the status of my spending" do
+  expect(@current_budget_page).to have_status_for @budget
+end
+
+And  "I see the list of expenses during this budget's time" do
+  expect(@current_budget_page).to have_list_of @costs
+end
+
+And "I see the list of total spending per category" do
+  expect(@current_budget_page).to have_list_of_categories_totals_for @costs
 end
 
 Given 'There is no current budget' do
@@ -49,37 +82,37 @@ Given 'There is no current budget' do
   expect(Budget.where(current: true)).to eq []
 end
 
-When "I click on this month's budget's link" do
-  click_link('Current Budget')
-end
+#When "I click on this month's budget's link" do
+  #click_link('Current Budget')
+#end
 
-Then 'I should see the monthly budget amount' do
-  expect(page.body).to have_content('Budget Amount: 500')
-end
+#Then 'I should see the monthly budget amount' do
+  #expect(page.body).to have_content('Budget Amount: 500')
+#end
 
-And 'I should see the amount used so far' do
-  expect(page.body).to have_content('Spent so far: 20')
-end
+#And 'I should see the amount used so far' do
+  #expect(page.body).to have_content('Spent so far: 20')
+#end
 
-And 'I should see the status of my current spending' do
-  expect(page.body).to have_content('Status: Within budget')
-end
+#And 'I should see the status of my current spending' do
+  #expect(page.body).to have_content('Status: Within budget')
+#end
 
-And 'I should see the total spending per category' do
-  expect(page.body).to have_content('Food: 2')
-  expect(page.body).to have_content('Transportation: 8')
-  expect(page.body).to have_content('Utility: 10')
-end
+#And 'I should see the total spending per category' do
+  #expect(page.body).to have_content('Food: 2')
+  #expect(page.body).to have_content('Transportation: 8')
+  #expect(page.body).to have_content('Utility: 10')
+#end
 
-And 'I should see the list of expenses during that period of time' do
-  expect(page.body).to have_content('Water bill')
-  expect(page.body).to have_content('15-Jun-1015')
-  expect(page.body).to have_content('Monthly bus pass')
-  expect(page.body).to have_content('3-Jun-1015')
-  expect(page.body).to have_content('Taxi to Station')
-  expect(page.body).to have_content('9-Jun-1015')
-  expect(page.body).to have_content('Fish and Chips')
-end
+#And 'I should see the list of expenses during that period of time' do
+  #expect(page.body).to have_content('Water bill')
+  #expect(page.body).to have_content('15-Jun-1015')
+  #expect(page.body).to have_content('Monthly bus pass')
+  #expect(page.body).to have_content('3-Jun-1015')
+  #expect(page.body).to have_content('Taxi to Station')
+  #expect(page.body).to have_content('9-Jun-1015')
+  #expect(page.body).to have_content('Fish and Chips')
+#end
 
 When 'I want to create a new one' do
   visit '/budget/new'
