@@ -1,4 +1,4 @@
-Factory.define do
+FactoryGirl.define do
   factory :cost do
     price        10
     description  { Faker::Lorem.sentence }
