@@ -40,7 +40,7 @@ And "there are costs for the current budget" do
 
   @costs = (1..10).map do |number|
     number <= 5 ? index = number : index = number - 5
-    create(:cost, price: number*2, category_id: @categories[index].id , budget_id: @budget.id)
+    create(:cost, price: number*2, category_id: @categories[index-1].id , budget_id: @budget.id)
   end
 end
 
