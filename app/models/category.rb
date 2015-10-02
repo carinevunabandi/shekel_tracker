@@ -1,3 +1,3 @@
 class Category < ActiveRecord::Base
-  has_many :cost
+  has_many :costs
 end

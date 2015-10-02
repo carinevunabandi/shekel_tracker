@@ -1,6 +1,5 @@
 class Budget < ActiveRecord::Base
-  belongs_to :time_period
-  has_many :cost
+  has_many :costs
 
   def self.amount_for_range(from, to)
     time_period_id = TimePeriod.where(from: from, to: to).time_period_id

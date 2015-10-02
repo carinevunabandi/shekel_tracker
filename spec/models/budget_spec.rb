@@ -28,7 +28,6 @@ describe Budget do
     end
 
     it 'loads all past budgets from the database' do
-      debugger
       expect(Budget.past).to eq budgets
       Budget.past
     end
