@@ -172,6 +172,3 @@ DEPENDENCIES
   sinatra-activerecord
   sinatra-flash
   site_prism
-
-BUNDLED WITH
-   1.10.5

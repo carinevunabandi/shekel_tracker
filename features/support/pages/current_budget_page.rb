@@ -6,7 +6,8 @@ class CurrentBudgetPage < SitePrism::Page
   end
 
   def has_time_period_for? budget
-    has_text? "#{budget.from} - #{budget.to}"
+    has_text? "#{budget.from.strftime('%d-%b-%y')}"
+    has_text? "#{budget.to.strftime('%d-%b-%y')}"
   end
 
   def has_total_spending_for? budget
@@ -15,7 +16,6 @@ class CurrentBudgetPage < SitePrism::Page
 
   def has_status_for? budget
     has_text? budget.overspent ? "Yes" : "No"
-
   end
 
   def has_list_of? costs
@@ -41,6 +41,6 @@ class CurrentBudgetPage < SitePrism::Page
   end
 
   def total_for_category costs, category
-    costs.where(category: category).reduce(:+)
+    costs.select { |cost| cost.category == category }.map(&:price).reduce(:+)
   end
 end
