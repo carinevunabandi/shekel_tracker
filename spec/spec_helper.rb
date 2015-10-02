@@ -5,6 +5,7 @@ require 'capybara/rspec'
 require 'database_cleaner'
 require 'simplecov'
 require 'factory_girl'
+require 'faker'
 
 SimpleCov.start do
   add_filter '/spec'

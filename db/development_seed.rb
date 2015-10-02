@@ -1,4 +1,6 @@
 require 'factory_girl'
+require 'faker'
+
 FactoryGirl.find_definitions
 
 def overspent?(spending_limit, number)
@@ -18,3 +20,16 @@ Budget.destroy_all
           from: from,
           to: to)
  end
+
+FactoryGirl.create(:budget)
+
+Category.destroy_all
+@categories = ["Transport", "Bills", "Entertainment", "Food", "Donations"].map do |cat_name|
+  FactoryGirl.create(:category, name: cat_name)
+end
+
+Cost.destroy_all
+(1..10).each do |number|
+  number <= 5 ? index = number : index = number - 5
+  FactoryGirl.create(:cost, price: number*0.2, category_id: @categories[index-1].id , budget_id: Budget.find_by(current: true).id)
+end
