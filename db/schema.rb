@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150928142803) do
+ActiveRecord::Schema.define(version: 20151002224259) do
 
   create_table "budgets", force: :cascade do |t|
     t.float   "spending_limit", limit: 24
@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(version: 20150928142803) do
   end
 
   create_table "costs", force: :cascade do |t|
-    t.integer "price",       limit: 4
+    t.float   "price",       limit: 24
     t.text    "description", limit: 65535
     t.string  "category_id", limit: 255
     t.date    "date"
