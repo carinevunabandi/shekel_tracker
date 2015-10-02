@@ -1,6 +1,6 @@
 class ShekelTracker < Sinatra::Base
   get '/view_current' do
-    @budget_wrapper = BudgetFacade.new(Budget.where(current: true))
+    @budget_wrapper = BudgetFacade.new(Budget.find_by(current: true))
     erb :'budget/current'
   end
 
