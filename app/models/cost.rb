@@ -2,6 +2,10 @@ class Cost < ActiveRecord::Base
   belongs_to :category
   belongs_to :budget
 
+  def formatted_date
+    DateFormatter.format(self.date)
+  end
+
   def self.total_for_period(time_period_id)
     costs = Cost.where(time_period_id: time_period_id).to_a
     if costs != []

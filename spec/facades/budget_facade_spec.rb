@@ -32,16 +32,16 @@ describe BudgetFacade do
 
   describe '#time_period' do
     it 'returns the formatted time period over which this budget applies' do
-      expect(budget_facade.time_period).to eq "01 Jan 10 => 31 Jan 10"
+      expect(budget_facade.time_period).to eq "From 01-Jan-2010 to 31-Jan-2010"
     end
 
     it "gets the 'from' date value of the current budget" do
-      expect(budget.from.strftime('%d %b %y')).to eq "01 Jan 10"
+      expect(budget).to receive(:from_date)
       budget_facade.time_period
     end
 
     it "gets the 'to' date value of the current budget" do
-      expect(budget.to.strftime('%d %b %y')).to eq "31 Jan 10"
+      expect(budget).to receive(:to_date)
       budget_facade.time_period
     end
   end

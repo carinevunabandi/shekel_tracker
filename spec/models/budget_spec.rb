@@ -32,6 +32,24 @@ describe Budget do
       Budget.past
     end
   end
+
+  describe "#from_date" do
+    let(:budget) { create(:budget, from:'01-01-2010') }
+
+    it "calls the DateFormatter with this budget's from date" do
+      expect(DateFormatter).to receive(:format).with(budget.from)
+      budget.from_date
+    end
+  end
+
+  describe "#to_date" do
+    let(:budget) { create(:budget, to:'31-01-2010') }
+
+    it "calls the DateFormatter with this budget's to date" do
+      expect(DateFormatter).to receive(:format).with(budget.to)
+      budget.to_date
+    end
+  end
 end
 
 def overspent?(spending_limit, number)

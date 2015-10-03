@@ -57,4 +57,13 @@ describe Cost do
       expect(subject.class.totals_per_categories(1)).to eq(nil)
     end
   end
+
+  describe "#formatted_date" do
+    let(:cost) { create(:cost, date: '01-01-2010') }
+
+    it "calls the DateFormatter with this cost's date" do
+      expect(DateFormatter).to receive(:format).with(cost.date)
+      cost.formatted_date
+    end
+  end
 end

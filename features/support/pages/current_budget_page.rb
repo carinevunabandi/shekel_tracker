@@ -6,8 +6,8 @@ class CurrentBudgetPage < SitePrism::Page
   end
 
   def has_time_period_for? budget
-    has_text? "#{budget.from.strftime('%d-%b-%y')}"
-    has_text? "#{budget.to.strftime('%d-%b-%y')}"
+    has_text? "#{budget.from_date}"
+    has_text? "#{budget.to_date}"
   end
 
   def has_total_spending_for? budget

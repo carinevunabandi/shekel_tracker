@@ -45,7 +45,7 @@
       <% if !@budget_wrapper.costs.nil? %>
         <% @budget_wrapper.costs.each do |cost| %>
           <tr>
-            <td><%=cost.date.strftime('%d %b %y')%></td>
+            <td><%=cost.formatted_date%></td>
             <td><%=cost.description%></td>
             <td>£ <%=cost.price%></td>
             <td><%=cost.category.name%></td>

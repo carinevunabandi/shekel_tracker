@@ -18,7 +18,7 @@ class BudgetFacade
   end
 
   def time_period
-    "From #{@budget.from.strftime('%d-%b-%y')} to #{@budget.to.strftime('%d-%b-%y')}"
+    "From #{@budget.from_date} to #{@budget.to_date}"
   end
 
   def costs
