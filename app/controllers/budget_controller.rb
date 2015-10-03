@@ -16,7 +16,8 @@ class ShekelTracker < Sinatra::Base
   end
 
   get '/view_past' do
-    @budgets = Budget.past
+    budgets = Budget.past
+    @budget_wrappers = budgets.map { |budget| BudgetFacade.new(budget) }
     erb :'budget/list'
   end
 end

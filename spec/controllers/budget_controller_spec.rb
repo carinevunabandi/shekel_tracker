@@ -40,6 +40,16 @@ describe "Viewing list of past budgets" do
     expect(Budget).to receive(:past).and_return(budgets)
     get '/view_past'
   end
+
+  it "creates a budget_facade for each past budget" do
+    allow(Budget).to receive(:past).and_return(budgets)
+    budgets.each do |budget|
+      budget_wrapper = BudgetFacade.new(budget)
+      allow(BudgetFacade).to receive(:new).and_return(budget_wrapper)
+      expect(BudgetFacade).to receive(:new).with(budget)
+    end
+    get '/view_past'
+  end
 end
 
 def overspent?(spending_limit, number)

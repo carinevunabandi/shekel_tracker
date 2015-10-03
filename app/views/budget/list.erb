@@ -6,12 +6,12 @@
       <th>Total Spent</th>
       <th>Overspent?</th>
     </tr>
-    <% @budgets.each do |budget| %>
+    <% @budget_wrappers.each do |budget_wrapper| %>
       <tr>
-        <td><a href="budget/<%= budget.id %>"><%= "From #{budget.from_date} to #{budget.to_date}" %></a></td>
-        <td><%= "£ #{budget.spending_limit}" %></td>
-        <td><%= "£ #{budget.total_spending}" %></td>
-        <td><%= budget.overspent ? "Yes" : "No" %></td>
+        <td><a href="budget/<%= budget_wrapper.budget.id %>"><%= budget_wrapper.time_period %></a></td>
+        <td><%= "£ #{budget_wrapper.spending_limit}" %></td>
+        <td><%= "£ #{budget_wrapper.total_spending}" %></td>
+        <td><%= budget_wrapper.overspent?%></td>
       </tr>
     <% end %>
   </table>
