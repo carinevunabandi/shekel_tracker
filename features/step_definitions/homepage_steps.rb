@@ -1,4 +1,4 @@
-When "I view the homepage" do
+When 'I view the homepage' do
   @homepage = Homepage.new
   @homepage.load
 end

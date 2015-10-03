@@ -26,13 +26,13 @@ describe BudgetFacade do
 
   describe '#overspent?' do
     it 'returns the status of the spending rate in a budget' do
-      expect(budget_facade.overspent?).to eq "No"
+      expect(budget_facade.overspent?).to eq 'No'
     end
   end
 
   describe '#time_period' do
     it 'returns the formatted time period over which this budget applies' do
-      expect(budget_facade.time_period).to eq "From 01-Jan-2010 to 31-Jan-2010"
+      expect(budget_facade.time_period).to eq 'From 01-Jan-2010 to 31-Jan-2010'
     end
 
     it "gets the 'from' date value of the current budget" do
@@ -46,23 +46,23 @@ describe BudgetFacade do
     end
   end
 
-  describe "#costs" do
+  describe '#costs' do
     it 'returns the costs objects associated to a budget' do
       allow(budget).to receive(:costs).and_return(costs)
       expect(budget_facade.costs).to eq costs
     end
   end
 
-  describe "#categories_with_totals" do
-    let(:categories) { (1..3).map { |number| create(:category, name:"cat_#{number}") } }
+  describe '#categories_with_totals' do
+    let(:categories) { (1..3).map { |number| create(:category, name: "cat_#{number}") } }
     let(:costs) do
       (1..3).map do |number|
-        create(:cost, category: categories[number-1], price: number*10)
+        create(:cost, category: categories[number - 1], price: number * 10)
       end
     end
-    let(:cats_and_totals)  { { "cat_1" => 10, "cat_2" => 20, "cat_3" => 30 } }
+    let(:cats_and_totals)  { { 'cat_1' => 10, 'cat_2' => 20, 'cat_3' => 30 } }
 
-    it "returns the totals per categories of costs associated to a budget" do
+    it 'returns the totals per categories of costs associated to a budget' do
       allow(budget_facade).to receive(:costs).and_return(costs)
       expect(budget_facade.categories_with_totals).to eq cats_and_totals
     end

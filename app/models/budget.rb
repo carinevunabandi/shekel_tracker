@@ -2,11 +2,11 @@ class Budget < ActiveRecord::Base
   has_many :costs
 
   def from_date
-    DateFormatter.format(self.from)
+    DateFormatter.format(from)
   end
 
   def to_date
-    DateFormatter.format(self.to)
+    DateFormatter.format(to)
   end
 
   def self.amount_for_range(from, to)
@@ -16,6 +16,6 @@ class Budget < ActiveRecord::Base
   end
 
   def self.past
-    budgets = Budget.where(current: false)
+    Budget.where(current: false)
   end
 end

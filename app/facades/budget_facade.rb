@@ -14,7 +14,7 @@ class BudgetFacade
   end
 
   def overspent?
-    @budget.overspent ? "Yes" : "No"
+    @budget.overspent ? 'Yes' : 'No'
   end
 
   def time_period

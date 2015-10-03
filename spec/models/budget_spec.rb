@@ -13,14 +13,14 @@ describe Budget do
 
   describe '.past' do
     let!(:budgets) do
-      [[1, "1-Jan-2010", "31-Jan-2010"],
-       [2, "1-Feb-2010", "29-Feb-2010"],
-       [3, "1-Mar-2010", "31-Mar-2010"],
-       [4, "1-Apr-2010", "30-Apr-2010"],
-       [5, "1-May-2010", "31-May-2010"]].map do |number, from, to|
+      [[1, '1-Jan-2010', '31-Jan-2010'],
+       [2, '1-Feb-2010', '29-Feb-2010'],
+       [3, '1-Mar-2010', '31-Mar-2010'],
+       [4, '1-Apr-2010', '30-Apr-2010'],
+       [5, '1-May-2010', '31-May-2010']].map do |number, from, to|
          create(:budget, :past_budget,
                 spending_limit: 700,
-                total_spending: number*200,
+                total_spending: number * 200,
                 overspent: overspent?(700, number),
                 from: from,
                 to: to)
@@ -33,8 +33,8 @@ describe Budget do
     end
   end
 
-  describe "#from_date" do
-    let(:budget) { create(:budget, from:'01-01-2010') }
+  describe '#from_date' do
+    let(:budget) { create(:budget, from: '01-01-2010') }
 
     it "calls the DateFormatter with this budget's from date" do
       expect(DateFormatter).to receive(:format).with(budget.from)
@@ -42,8 +42,8 @@ describe Budget do
     end
   end
 
-  describe "#to_date" do
-    let(:budget) { create(:budget, to:'31-01-2010') }
+  describe '#to_date' do
+    let(:budget) { create(:budget, to: '31-01-2010') }
 
     it "calls the DateFormatter with this budget's to date" do
       expect(DateFormatter).to receive(:format).with(budget.to)
@@ -53,5 +53,5 @@ describe Budget do
 end
 
 def overspent?(spending_limit, number)
-  number*200 > spending_limit ? true : false
+  number * 200 > spending_limit ? true : false
 end

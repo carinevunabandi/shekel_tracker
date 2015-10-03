@@ -58,7 +58,7 @@ describe Cost do
     end
   end
 
-  describe "#formatted_date" do
+  describe '#formatted_date' do
     let(:cost) { create(:cost, date: '01-01-2010') }
 
     it "calls the DateFormatter with this cost's date" do

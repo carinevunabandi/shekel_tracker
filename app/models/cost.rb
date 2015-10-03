@@ -3,7 +3,7 @@ class Cost < ActiveRecord::Base
   belongs_to :budget
 
   def formatted_date
-    DateFormatter.format(self.date)
+    DateFormatter.format(date)
   end
 
   def self.total_for_period(time_period_id)
