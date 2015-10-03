@@ -3,10 +3,6 @@ require 'faker'
 
 FactoryGirl.find_definitions
 
-def overspent?(spending_limit, number)
-  number*200 > spending_limit ? true : false
-end
-
 Budget.destroy_all
 [[1, "1-Jan-2010", "31-Jan-2010"],
  [2, "1-Feb-2010", "28-Feb-2010"],
@@ -16,7 +12,7 @@ Budget.destroy_all
    FactoryGirl.create(:budget, :past_budget,
           spending_limit: 700,
           total_spending: number*200,
-          overspent: overspent?(700, number),
+          overspent: (number*200 > spending_limit ? true : false ),
           from: from,
           to: to)
  end

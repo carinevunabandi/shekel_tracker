@@ -21,7 +21,7 @@ describe Budget do
          create(:budget, :past_budget,
                 spending_limit: 700,
                 total_spending: number * 200,
-                overspent: overspent?(700, number),
+                overspent: (number * 200 > spending_limit ? true : false),
                 from: from,
                 to: to)
        end
@@ -50,8 +50,4 @@ describe Budget do
       budget.to_date
     end
   end
-end
-
-def overspent?(spending_limit, number)
-  number * 200 > spending_limit ? true : false
 end

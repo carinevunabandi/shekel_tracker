@@ -2,5 +2,12 @@ IrresponsibleModule:
   enabled: false
 UncommunicativeVariableName:
   enabled: true
+"features/support/pages/":
+  UtilityFunction:
+    enabled: false
+  FeatureEnvy:
+    enabled: false
+  IrresponsibleModule:
+    enabled: false
 exclude_paths:
   - db/migrate
