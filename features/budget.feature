@@ -6,7 +6,6 @@ Feature: Anything to do with budgets
     When  I view past budgets
     Then  I see the list of all past budgets
 
-  @wip
   Scenario: Creating a new budget
     Given There is no current budget
     When  I want to create a new one

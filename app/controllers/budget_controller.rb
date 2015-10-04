@@ -4,16 +4,20 @@ class ShekelTracker < Sinatra::Base
     erb :'budget/current'
   end
 
-  # get '/budget/new' do
-  # erb :'budget/new'
-  # end
+  get '/budget/new' do
+    erb :'budget/new'
+  end
 
-  # post '/budget/new' do
-  # @time_period = TimePeriod.create(from: params['from'], to: params['to'])
-  # Budget.create(time_period_id: @time_period.id, amount: params['amount'], current: true)
-  # flash[:success] = 'Budget created'
-  # redirect :'/view_current'
-  # end
+  post '/budget/new' do
+    Budget.create(spending_limit: params['spending_limit'],
+                  from: params['from'],
+                  to: params['to'],
+                  current: true,
+                  total_spending: 0,
+                  overspent: false)
+    flash[:success] = 'Budget created'
+    redirect :'/view_current'
+  end
 
   get '/view_past' do
     budgets = Budget.past

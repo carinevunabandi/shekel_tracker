@@ -52,50 +52,34 @@ describe 'Viewing list of past budgets' do
   end
 end
 
-# describe 'GET /budget/new' do
-# it 'renders the budgets new page' do
-# get '/budget/new'
-# expect(last_response.body).to match(/New Budget/)
-# end
-# end
+describe 'GET /budget/new' do
+  it 'renders the create new budget page' do
+    get '/budget/new'
+    expect(last_response.body).to match(/New Budget/)
+  end
+end
 
-# describe 'POST /budget/new' do
-# let(:params) do
-# { 'from'   => '1-Aug-2015',
-# 'to'     => '31-Aug-2015',
-# 'amount' => '800' }
-# end
+describe 'POST /budget/new' do
+  let(:params) do
+    { 'from'           => '1-Aug-2015',
+      'to'             => '31-Aug-2015',
+      'spending_limit' => '800' }
+  end
 
-# let(:time_period) do
-# TimePeriod.new(from: params['from'],
-# to:   params['to'])
-# end
-# let(:budget) do
-# Budget.new(time_period_id: time_period.id,
-# amount:         params['amount'],
-# current:        true)
-# end
+  it 'should save the newly created budget' do
+    expect(Budget).to receive(:create).with(from: params['from'],
+                                            to: params['to'],
+                                            spending_limit: params['spending_limit'],
+                                            current: true,
+                                            total_spending: 0,
+                                            overspent: false)
 
-# before do
-# allow(TimePeriod).to receive(:create).with(from: params['from'], to: params['to']).and_return(time_period)
-# allow(Budget).to receive(:new).with(time_period_id: time_period.id,
-# amount: params['amount'],
-# current: true).and_return(time_period)
-# end
+    post '/budget/new', params
+  end
 
-# it 'should save the time period' do
-# expect(TimePeriod).to receive(:create)
-# post '/budget/new', params
-# end
-
-# it 'should save the budget' do
-# expect(Budget).to receive(:create)
-# post '/budget/new', params
-# end
-
-# it 'should redirect to the current budget page and shows a flash message' do
-# post '/budget/new', params
-# follow_redirect!
-# expect(last_response).to match(/Budget created/)
-# end
-# end
+  it 'should redirect to the current budget page and shows a flash message' do
+    post '/budget/new', params
+    follow_redirect!
+    expect(last_response).to match(/Budget created/)
+  end
+end
