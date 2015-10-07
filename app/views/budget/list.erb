@@ -8,7 +8,7 @@
     </tr>
     <% @budget_wrappers.each do |budget_wrapper| %>
       <tr>
-        <td><a href="budget/<%= budget_wrapper.budget.id %>"><%= budget_wrapper.time_period %></a></td>
+        <td><a href="/budget/<%= budget_wrapper.budget.id %>"><%= budget_wrapper.time_period %></a></td>
         <td><%= "£ #{budget_wrapper.spending_limit}" %></td>
         <td><%= "£ #{budget_wrapper.total_spending}" %></td>
         <td><%= budget_wrapper.overspent?%></td>
