@@ -12,6 +12,22 @@ describe BudgetFacade do
     end
   end
 
+  describe '#url_path' do
+    context "There is an existing current budget" do
+      it 'the id of the budget to be used as the fragment of a url' do
+        expect(budget_facade.url_path). to eq "#{budget.id}"
+      end
+    end
+
+    context "There is no existing current budget" do
+      budget = nil
+      budget_facade = BudgetFacade.new(budget)
+      it 'new to be used as the fragment of a url' do
+        expect(budget_facade.url_path). to eq "not_found"
+      end
+    end
+  end
+
   describe '#spending_limit' do
     it 'returns the spending limit set for a budget' do
       expect(budget_facade.spending_limit).to eq 100

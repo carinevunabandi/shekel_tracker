@@ -5,6 +5,10 @@ class BudgetFacade
     @budget = budget
   end
 
+  def url_path
+    @budget.nil? ? "not_found" : "#{@budget.id}"
+  end
+
   def spending_limit
     @budget.spending_limit
   end
