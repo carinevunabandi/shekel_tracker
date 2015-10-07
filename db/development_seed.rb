@@ -12,7 +12,7 @@ Budget.destroy_all
    FactoryGirl.create(:budget, :past_budget,
           spending_limit: 700,
           total_spending: number*200,
-          overspent: (number*200 > spending_limit ? true : false ),
+          overspent: (number*200 > 700 ? true : false ),
           from: from,
           to: to)
  end
