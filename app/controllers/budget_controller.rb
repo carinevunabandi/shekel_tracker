@@ -1,13 +1,19 @@
 class ShekelTracker < Sinatra::Base
   get '/view_current' do
-    @budget_wrapper = BudgetFacade.new(Budget.find_by(current: true))
-    erb :'budget/current'
+    budget = Budget.find_by(current: true)
+    @budget_wrapper = BudgetFacade.new(budget)
+    redirect :"/budget/#{@budget_wrapper.url_path}"
   end
 
   get '/budget/new' do
     erb :'budget/new'
   end
 
+  get '/budget/:id' do
+    budget = Budget.find(params[:id])
+    @budget_wrapper = BudgetFacade.new(budget)
+    erb :'budget/show'
+  end
   post '/budget/new' do
     Budget.create(spending_limit: params['spending_limit'],
                   from: params['from'],

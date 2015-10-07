@@ -18,6 +18,30 @@ describe 'Viewing details about the current budget' do
     expect(BudgetFacade).to receive(:new).with(current_budget)
     get '/view_current'
   end
+
+  context "There is an existing current budget in the db" do
+    it "redirects to viewing the current's budget" do
+      get '/view_current'
+      expect(last_response).to be_redirect
+      follow_redirect!
+      expect(last_request.path).to eq "/budget/#{current_budget.id}"
+    end
+  end
+
+  context "There is no existing current budget in the db" do
+    current_budget = nil
+    budget_wrapper = BudgetFacade.new(current_budget)
+
+    it "redirects to creating a new budget" do
+      allow(Budget).to receive(:find_by).and_return(current_budget)
+      allow(BudgetFacade).to receive(:new).and_return(budget_wrapper)
+      get '/view_current'
+      expect(last_response).to be_redirect
+      follow_redirect!
+      expect(last_request.path).to eq "/budget/not_found"
+    end
+  end
+end
 end
 
 describe 'Viewing list of past budgets' do
@@ -56,6 +80,27 @@ describe 'GET /budget/new' do
   it 'renders the create new budget page' do
     get '/budget/new'
     expect(last_response.body).to match(/New Budget/)
+  end
+end
+
+describe 'GET /budget/:id' do
+  let(:params)         { { 'id' => '1'} }
+  let(:budget)         { create(:budget) }
+  let(:budget_wrapper) { BudgetFacade.new(budget) }
+
+  before do
+    allow(Budget).to receive(:find).with('1').and_return(budget)
+  end
+
+  it 'loads the budget sepcified by the id' do
+    expect(Budget).to receive(:find).with(params['id'])
+    get '/budget/1'
+  end
+
+  it 'wraps the found budget into a budget_facade object' do
+    allow(BudgetFacade).to receive(:new).and_return(budget_wrapper)
+    expect(BudgetFacade).to receive(:new).with(budget)
+    get '/budget/1'
   end
 end
 
