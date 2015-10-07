@@ -130,7 +130,7 @@ describe 'POST /budget/new' do
 
   it 'should redirect to the current budget page and shows a flash message' do
     post '/budget/new', params
-    follow_redirect!
+    2.times { follow_redirect! }
     expect(last_response).to match(/Budget created/)
   end
 end

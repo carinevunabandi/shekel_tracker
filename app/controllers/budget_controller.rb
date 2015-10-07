@@ -18,6 +18,13 @@ class ShekelTracker < Sinatra::Base
     @budget_wrapper = BudgetFacade.new(budget)
     erb :'budget/show'
   end
+
+  get '/view_past' do
+    budgets = Budget.past
+    @budget_wrappers = budgets.map { |budget| BudgetFacade.new(budget) }
+    erb :'budget/list'
+  end
+
   post '/budget/new' do
     Budget.create(spending_limit: params['spending_limit'],
                   from: params['from'],
@@ -27,11 +34,5 @@ class ShekelTracker < Sinatra::Base
                   overspent: false)
     flash[:success] = 'Budget created'
     redirect :'/view_current'
-  end
-
-  get '/view_past' do
-    budgets = Budget.past
-    @budget_wrappers = budgets.map { |budget| BudgetFacade.new(budget) }
-    erb :'budget/list'
   end
 end
