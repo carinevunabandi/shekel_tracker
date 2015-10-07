@@ -49,7 +49,7 @@ Then 'I see the spending limit for that budget' do
   expect(@view_budget_page).to have_spending_limit_for @budget
 end
 
-And "I see the time period for that budget" do
+And 'I see the time period for that budget' do
   expect(@view_budget_page).to have_time_period_for @budget
 end
 

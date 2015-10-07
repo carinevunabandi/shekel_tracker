@@ -1,5 +1,5 @@
 class ViewBudgetPage < SitePrism::Page
-  set_url "/budget{/id}"
+  set_url '/budget{/id}'
 
   def has_spending_limit_for?(budget)
     has_text? budget.spending_limit

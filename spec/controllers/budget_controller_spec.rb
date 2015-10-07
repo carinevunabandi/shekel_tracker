@@ -19,7 +19,7 @@ describe 'Viewing details about the current budget' do
     get '/budget/current'
   end
 
-  context "There is an existing current budget in the db" do
+  context 'There is an existing current budget in the db' do
     it "redirects to viewing the current's budget" do
       get '/budget/current'
       expect(last_response).to be_redirect
@@ -28,17 +28,17 @@ describe 'Viewing details about the current budget' do
     end
   end
 
-  context "There is no existing current budget in the db" do
+  context 'There is no existing current budget in the db' do
     current_budget = nil
     budget_wrapper = BudgetFacade.new(current_budget)
 
-    it "redirects to creating a new budget" do
+    it 'redirects to creating a new budget' do
       allow(Budget).to receive(:find_by).and_return(current_budget)
       allow(BudgetFacade).to receive(:new).and_return(budget_wrapper)
       get '/budget/current'
       expect(last_response).to be_redirect
       follow_redirect!
-      expect(last_request.path).to eq "/budget/not_found"
+      expect(last_request.path).to eq '/budget/not_found'
     end
   end
 end
@@ -90,7 +90,7 @@ describe 'GET /budget/new' do
 end
 
 describe 'GET /budget/:id' do
-  let(:params)         { { 'id' => '1'} }
+  let(:params)         { { 'id' => '1' } }
   let(:budget)         { create(:budget) }
   let(:budget_wrapper) { BudgetFacade.new(budget) }
 
