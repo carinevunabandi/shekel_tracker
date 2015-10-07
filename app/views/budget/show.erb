@@ -1,0 +1,55 @@
+<div id="current_budget_content">
+  <table class="table table-striped table-bordered table-hover table-condensed">
+    <h4>Budget Sumary: </h4>
+    <tr>
+      <td>Budget time period</td>
+      <td><%= @budget_wrapper.time_period %></td>
+    </tr>
+    <tr>
+      <td>Spending limit</td>
+      <td>£ <%= @budget_wrapper.spending_limit %></td>
+    </tr>
+    <tr>
+      <td>Total expenses</td>
+      <td>£ <%= @budget_wrapper.total_spending%></td>
+    </tr>
+    <tr>
+      <td>Overspent?</td>
+      <td><%= @budget_wrapper.overspent? %></td>
+    </tr>
+  </table>
+  <br />
+  <h4>Total spending per category: </h4>
+  <table class="table table-striped table-bordered table-hover table-condensed">
+    <% if @budget_wrapper.categories_with_totals.nil? %>
+      <tr><td>No expenses to show</td></tr>
+    <%else%>
+      <% @budget_wrapper.categories_with_totals.each do |category_name, total| %>
+        <tr>
+          <td><%=category_name%></td>
+          <td>£ <%=total%></td>
+        </tr>
+      <%end%>
+    <%end%>
+  </table>
+  <br />
+  <h4>Detailed list of expenses: </h4>
+  <table class="table table-striped table-bordered table-hover table-condensed">
+    <tr>
+      <th>Date</th>
+      <th>Description</th>
+      <th>Price</th>
+      <th>Category</th>
+    </tr>
+    <% if !@budget_wrapper.costs.nil? %>
+      <% @budget_wrapper.costs.each do |cost| %>
+        <tr>
+          <td><%=cost.formatted_date%></td>
+          <td><%=cost.description%></td>
+          <td>£ <%=cost.price%></td>
+          <td><%=cost.category.name%></td>
+        </tr>
+      <%end%>
+    <%end%>
+  </table>
+</div>
