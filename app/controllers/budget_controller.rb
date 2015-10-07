@@ -1,5 +1,5 @@
 class ShekelTracker < Sinatra::Base
-  get '/view_current' do
+  get '/budget/current' do
     budget = Budget.find_by(current: true)
     @budget_wrapper = BudgetFacade.new(budget)
     redirect :"/budget/#{@budget_wrapper.url_path}"
@@ -13,16 +13,16 @@ class ShekelTracker < Sinatra::Base
     erb :'budget/prompt_new'
   end
 
+  get '/budget/past' do
+    budgets = Budget.past
+    @budget_wrappers = budgets.map { |budget| BudgetFacade.new(budget) }
+    erb :'budget/list'
+  end
+
   get '/budget/:id' do
     budget = Budget.find(params[:id])
     @budget_wrapper = BudgetFacade.new(budget)
     erb :'budget/show'
-  end
-
-  get '/view_past' do
-    budgets = Budget.past
-    @budget_wrappers = budgets.map { |budget| BudgetFacade.new(budget) }
-    erb :'budget/list'
   end
 
   post '/budget/new' do
@@ -33,6 +33,6 @@ class ShekelTracker < Sinatra::Base
                   total_spending: 0,
                   overspent: false)
     flash[:success] = 'Budget created'
-    redirect :'/view_current'
+    redirect :'/budget/current'
   end
 end

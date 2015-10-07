@@ -1,5 +1,5 @@
 class PastBudgetsPage < SitePrism::Page
-  set_url '/view_past'
+  set_url '/budget/past'
 
   def has_row_for?(budget)
     has_css? 'td', text: "#{budget.from} - #{budget.to}"

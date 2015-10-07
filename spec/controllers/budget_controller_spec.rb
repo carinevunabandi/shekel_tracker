@@ -11,17 +11,17 @@ describe 'Viewing details about the current budget' do
 
   it 'loads the current budget from the database' do
     expect(Budget).to receive(:find_by).with(current: true)
-    get '/view_current'
+    get '/budget/current'
   end
 
   it 'creates a budget_facade with the current budget' do
     expect(BudgetFacade).to receive(:new).with(current_budget)
-    get '/view_current'
+    get '/budget/current'
   end
 
   context "There is an existing current budget in the db" do
     it "redirects to viewing the current's budget" do
-      get '/view_current'
+      get '/budget/current'
       expect(last_response).to be_redirect
       follow_redirect!
       expect(last_request.path).to eq "/budget/#{current_budget.id}"
@@ -35,7 +35,7 @@ describe 'Viewing details about the current budget' do
     it "redirects to creating a new budget" do
       allow(Budget).to receive(:find_by).and_return(current_budget)
       allow(BudgetFacade).to receive(:new).and_return(budget_wrapper)
-      get '/view_current'
+      get '/budget/current'
       expect(last_response).to be_redirect
       follow_redirect!
       expect(last_request.path).to eq "/budget/not_found"
@@ -68,7 +68,7 @@ describe 'Viewing list of past budgets' do
 
   it 'loads all past budgets' do
     expect(Budget).to receive(:past).and_return(budgets)
-    get '/view_past'
+    get '/budget/past'
   end
 
   it 'creates a budget_facade for each past budget' do
@@ -78,7 +78,7 @@ describe 'Viewing list of past budgets' do
       allow(BudgetFacade).to receive(:new).and_return(budget_wrapper)
       expect(BudgetFacade).to receive(:new).with(budget)
     end
-    get '/view_past'
+    get '/budget/past'
   end
 end
 
