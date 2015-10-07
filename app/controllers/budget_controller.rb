@@ -9,6 +9,10 @@ class ShekelTracker < Sinatra::Base
     erb :'budget/new'
   end
 
+  get '/budget/not_found' do
+    erb :'budget/prompt_new'
+  end
+
   get '/budget/:id' do
     budget = Budget.find(params[:id])
     @budget_wrapper = BudgetFacade.new(budget)

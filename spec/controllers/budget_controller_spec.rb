@@ -42,6 +42,12 @@ describe 'Viewing details about the current budget' do
     end
   end
 end
+
+describe 'Being prompted to create a new budget' do
+  it 'prompts the user the create a new budget if there is no current one' do
+    get '/budget/not_found'
+    expect(last_response).to match(/No budgets defined yet! Create a new one/)
+  end
 end
 
 describe 'Viewing list of past budgets' do
