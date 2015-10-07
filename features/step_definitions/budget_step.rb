@@ -25,11 +25,11 @@ Then 'I see the list of all past budgets' do
   end
 end
 
-Given 'there is a current budget' do
+Given 'there is a budget' do
   @budget = create(:budget)
 end
 
-And 'there are costs for the current budget' do
+And 'there are costs for that budget' do
   @categories = %w(Transport Bills Entertainment Food Donations).map do |cat_name|
     create(:category, name: cat_name)
   end
@@ -40,34 +40,33 @@ And 'there are costs for the current budget' do
   end
 end
 
-When 'I view the current budget' do
-  @homepage = Homepage.new
-  @homepage.load
-  @current_budget_page = @homepage.view_current
+When 'I view that budget' do
+  @view_budget_page = ViewBudgetPage.new
+  @view_budget_page.load(id: @budget.id)
 end
 
 Then 'I see the spending limit for that budget' do
-  expect(@current_budget_page).to have_spending_limit_for @budget
+  expect(@view_budget_page).to have_spending_limit_for @budget
 end
 
-And "I see the current budget's time period" do
-  expect(@current_budget_page).to have_time_period_for @budget
+And "I see the time period for that budget" do
+  expect(@view_budget_page).to have_time_period_for @budget
 end
 
-And 'I see the total amount spent so far' do
-  expect(@current_budget_page).to have_total_spending_for @budget
+And 'I see the total amount spent for that budget' do
+  expect(@view_budget_page).to have_total_spending_for @budget
 end
 
-And 'I see the status of my spending' do
-  expect(@current_budget_page).to have_status_for @budget
+And 'I see the state of the spending rate for that budget' do
+  expect(@view_budget_page).to have_status_for @budget
 end
 
-And "I see the list of expenses during this budget's time" do
-  expect(@current_budget_page).to have_list_of @costs
+And "I see the list of expenses during that budget's time period" do
+  expect(@view_budget_page).to have_list_of @costs
 end
 
-And 'I see the list of total spending per category' do
-  expect(@current_budget_page).to have_list_of_categories_totals_for @costs
+And 'I see the list of total spending per category for that budget' do
+  expect(@view_budget_page).to have_list_of_categories_totals_for @costs
 end
 
 Given 'There is no current budget' do
@@ -92,5 +91,5 @@ end
 
 And 'I should see a confirmation text and be redirected to viewing it' do
   expect(page.body).to have_content('Budget created')
-  expect(current_path).to eq('/view_current')
+  expect(current_path).to eq("/budget/#{Budget.find_by(current: true).id}")
 end

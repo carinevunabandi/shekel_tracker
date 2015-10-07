@@ -13,13 +13,13 @@ Feature: Anything to do with budgets
     Then  The new budget should be created
     And   I should see a confirmation text and be redirected to viewing it
 
-  Scenario: Viewing the current month's budget
-    Given there is a current budget
-    And   there are costs for the current budget
-    When  I view the current budget
+  Scenario: Viewing a budget
+    Given there is a budget
+    And   there are costs for that budget
+    When  I view that budget
     Then  I see the spending limit for that budget
-    And   I see the current budget's time period
-    And   I see the total amount spent so far
-    And   I see the status of my spending
-    And   I see the list of expenses during this budget's time
-    And   I see the list of total spending per category
+    And   I see the time period for that budget
+    And   I see the total amount spent for that budget
+    And   I see the state of the spending rate for that budget
+    And   I see the list of expenses during that budget's time period
+    And   I see the list of total spending per category for that budget
