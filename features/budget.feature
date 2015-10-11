@@ -1,4 +1,4 @@
-Feature: Anything to do with budgets
+Feature: Creating and managing budgets
 
   Scenario: Viewing the list of all budgets
     Given I am on the homepage
@@ -14,8 +14,7 @@ Feature: Anything to do with budgets
     And   I should see a confirmation text and be redirected to viewing it
 
   Scenario: Viewing a budget
-    Given there is a budget
-    And   there are costs for that budget
+    Given there is a budget with associated costs
     When  I view that budget
     Then  I see the spending limit for that budget
     And   I see the time period for that budget

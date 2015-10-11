@@ -25,19 +25,8 @@ Then 'I see the list of all past budgets' do
   end
 end
 
-Given 'there is a budget' do
-  @budget = create(:budget)
-end
-
-And 'there are costs for that budget' do
-  @categories = %w(Transport Bills Entertainment Food Donations).map do |cat_name|
-    create(:category, name: cat_name)
-  end
-
-  @costs = (1..10).map do |number|
-    number <= 5 ? index = number : index = number - 5
-    create(:cost, price: number * 2, category_id: @categories[index - 1].id, budget_id: @budget.id)
-  end
+Given 'there is a budget with associated costs' do
+  @budget = create(:budget, :with_10_costs)
 end
 
 When 'I view that budget' do
@@ -62,11 +51,11 @@ And 'I see the state of the spending rate for that budget' do
 end
 
 And "I see the list of expenses during that budget's time period" do
-  expect(@view_budget_page).to have_list_of @costs
+  expect(@view_budget_page).to have_list_of @budget.costs
 end
 
 And 'I see the list of total spending per category for that budget' do
-  expect(@view_budget_page).to have_list_of_categories_totals_for @costs
+  expect(@view_budget_page).to have_list_of_categories_totals_for @budget.costs
 end
 
 Given 'There is no current budget' do
