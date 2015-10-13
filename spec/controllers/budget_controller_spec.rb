@@ -57,7 +57,7 @@ describe 'Viewing list of past budgets' do
      [3, '1-Mar-2010', '31-Mar-2010'],
      [4, '1-Apr-2010', '30-Apr-2010'],
      [5, '1-May-2010', '31-May-2010']].map do |number, from, to|
-       create(:budget, :past_budget,
+       create(:budget, :past,
               spending_limit: 700,
               total_spending: number * 200,
               overspent: (number * 200 > 700 ? true : false),
