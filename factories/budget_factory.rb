@@ -8,6 +8,10 @@ FactoryGirl.define do
     to '31-Jan-2010'
   end
 
+  trait :with_no_costs_yet do
+    total_spending 0
+  end
+
   trait :past do
     current false
   end

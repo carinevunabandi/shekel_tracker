@@ -1,6 +1,12 @@
 class ViewBudgetPage < SitePrism::Page
   set_url '/budget{/id}'
 
+  element :date,            "input[name='cost_date']"
+  element :description,     "input[name='cost_desc']"
+  element :price,           "input[name='cost_price']"
+  element :category,        "button[name='cost_cat']"
+  element :add_cost_button, "button[type='submit']"
+
   def has_spending_limit_for?(budget)
     has_text? budget.spending_limit
   end
@@ -32,6 +38,13 @@ class ViewBudgetPage < SitePrism::Page
       has_text? category
       has_text? total_for_category(costs, category)
     end
+  end
+
+  def shows_details_for_cost cost
+      has_css? 'td', text: cost.price
+      has_css? 'td', text: cost.description
+      has_css? 'td', text: cost.date
+      has_css? 'td', text: cost.category
   end
 
   private
