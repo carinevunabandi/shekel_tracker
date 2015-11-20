@@ -49,4 +49,12 @@ describe Budget do
       expect(budget.range).to eq(date_range)
     end
   end
+
+  describe '.current' do
+    let!(:budget)     { create(:budget) }
+
+    it 'returns the current budget' do
+      expect(Budget.current).to eq(budget)
+    end
+  end
 end

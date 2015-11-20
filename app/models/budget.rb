@@ -16,4 +16,8 @@ class Budget < ActiveRecord::Base
   def range
     (from..to).to_a
   end
+
+  def self.current
+    Budget.find_by(current: true)
+  end
 end

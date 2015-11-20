@@ -1,6 +1,6 @@
 class ShekelTracker < Sinatra::Base
   get '/budget/current' do
-    budget = Budget.find_by(current: true)
+    budget = Budget.current
     @budget_wrapper = BudgetFacade.new(budget)
     redirect :"/budget/#{@budget_wrapper.url_path}"
   end

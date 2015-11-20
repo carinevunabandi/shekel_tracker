@@ -5,12 +5,12 @@ describe 'Viewing details about the current budget' do
   let(:budget_wrapper)    { BudgetFacade.new(current_budget) }
 
   before do
-    allow(Budget).to receive(:find_by).and_return(current_budget)
+    allow(Budget).to receive(:current).and_return(current_budget)
     allow(BudgetFacade).to receive(:new).and_return(budget_wrapper)
   end
 
   it 'loads the current budget from the database' do
-    expect(Budget).to receive(:find_by).with(current: true)
+    expect(Budget).to receive(:current)
     get '/budget/current'
   end
 
