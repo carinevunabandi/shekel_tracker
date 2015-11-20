@@ -18,7 +18,6 @@ FactoryGirl.define do
   # :nocov:
   trait :current_with_costs do
     after(:create) do |budget|
-      categories = create_categories
       (1..rand(10...20)).each do |number|
         create(:cost, price: number * 0.2, category_id: categories[rand(0...5)].id, budget: budget)
       end
@@ -27,7 +26,6 @@ FactoryGirl.define do
 
   trait :with_costs do
     after(:create) do |budget|
-      categories = create_categories
       (1..rand(10...50)).each do |num|
         create(:cost, price: num * 0.2, category_id: categories[rand(0...5)].id, budget: budget, date: Faker::Date.between(budget.from, budget.to))
       end
@@ -35,7 +33,7 @@ FactoryGirl.define do
   end
 end
 
-def create_categories
-  %w(Transport Bills Entertainment Food Donations).map { |cat_name| create(:category, name: cat_name) }
+def categories
+  Category.all
 end
 # :nocov:

@@ -7,7 +7,10 @@ Budget.destroy_all
 Category.destroy_all
 Cost.destroy_all
 
+%w(Transport Bills Entertainment Food Donations).map { |cat_name| FactoryGirl.create(:category, name: cat_name) }
+
 FactoryGirl.create(:budget, :current_with_costs)
+
 
 [[1, "1-Jan-2010", "31-Jan-2010"],
  [2, "1-Feb-2010", "28-Feb-2010"],
