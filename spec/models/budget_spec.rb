@@ -40,4 +40,13 @@ describe Budget do
       budget.to_date
     end
   end
+
+  describe '#range' do
+    let(:date_range) { (Date.parse('01-Jan-2010')..Date.parse('03-Jan-2010')).to_a }
+    let(:budget)     { create(:budget, from: date_range.first, to: date_range.last) }
+
+    it "returns the range for the budget's period" do
+      expect(budget.range).to eq(date_range)
+    end
+  end
 end

@@ -12,4 +12,8 @@ class Budget < ActiveRecord::Base
   def self.past
     Budget.where(current: false)
   end
+
+  def range
+    (from..to).to_a
+  end
 end
