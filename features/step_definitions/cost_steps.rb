@@ -11,15 +11,15 @@ When 'I fill in the form to create a new cost' do
   @current_budget_page.date.set '1-Jan-2010'
   @current_budget_page.description.set 'some description'
   @current_budget_page.price.set '10'
-  @current_budget_page.category.set 'A category'
+  select 'Bills', from: 'categories_list'
 end
 
 When 'I click on add new cost' do
   @current_budget_page.add_cost_button.click
 end
 
-Then "a new cost is created in the database" do
-  expect(Cost.where(budget: @current_budget, description: 'some description')).to_not eq []
+Then 'a new cost is created in the database' do
+  expect(Cost.find_by(budget: @current_budget, description: 'some description')).to_not eq nil
 end
 
 And 'that cost is added to the list of existing costs for the current budget' do
