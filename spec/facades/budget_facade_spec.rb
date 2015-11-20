@@ -1,10 +1,9 @@
 require 'spec_helper'
 
 describe BudgetFacade do
-  let(:budget)        { create(:budget) }
-  let(:budget_facade) { BudgetFacade.new(budget) }
-  let(:categories)    { double(:categories) }
-  let(:costs)         { double(:costs) }
+  let(:budget)         { create(:budget) }
+  let(:budget_facade)  { BudgetFacade.new(budget) }
+  let(:costs)          { double(:costs) }
 
   describe '#budget' do
     it 'returns the wrapped budget object' do
