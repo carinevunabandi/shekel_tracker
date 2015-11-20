@@ -44,7 +44,7 @@ describe Cost do
   end
 
   describe '#formatted_date' do
-    let(:cost) { create(:cost, date: '01-01-2010') }
+    let(:cost) { create(:cost, date: '01-01-2010', budget: create(:budget)) }
 
     it "calls the DateFormatter with this cost's date" do
       expect(DateFormatter).to receive(:format).with(cost.date)
