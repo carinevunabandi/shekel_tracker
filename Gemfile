@@ -25,4 +25,5 @@ group :test do
   gem 'sandi_meter'
   gem 'simplecov'
   gem 'site_prism'
+  gem 'shoulda-matchers'
 end
