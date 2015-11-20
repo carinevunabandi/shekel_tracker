@@ -1,5 +1,8 @@
 Feature: Creating and managing budgets
 
+  Background:
+    Given there are categories in the database
+
   Scenario: Viewing the list of all budgets
     Given I am on the homepage
     And   there are budgets in the database

@@ -1,3 +1,7 @@
+Given 'there are categories in the database' do
+  %w(Transport Bills Entertainment Food Donations).map { |cat_name| create(:category, name: cat_name) }
+end
+
 And 'there are budgets in the database' do
   @budgets = [[1, '1-Jan-2010', '31-Jan-2010'],
               [2, '1-Feb-2010', '28-Feb-2010'],

@@ -1,5 +1,8 @@
 Feature: Creating and managing costs
 
+  Background:
+    Given there are categories in the database
+
   Scenario: Adding a new cost
     Given there is an existing current budget
     And   I am viewing that budget
