@@ -4,8 +4,7 @@ class ViewBudgetPage < SitePrism::Page
   element :date,            "input[name='cost_date']"
   element :description,     "input[name='cost_desc']"
   element :price,           "input[name='cost_price']"
-  element :category,        "button[name='cost_cat']"
-  element :add_cost_button, "button[type='submit']"
+  element :add_cost_button, "input[type='submit']"
 
   def has_spending_limit_for?(budget)
     has_text? budget.spending_limit
@@ -40,11 +39,11 @@ class ViewBudgetPage < SitePrism::Page
     end
   end
 
-  def shows_details_for_cost cost
-      has_css? 'td', text: cost.price
-      has_css? 'td', text: cost.description
-      has_css? 'td', text: cost.date
-      has_css? 'td', text: cost.category
+  def shows_details_for_cost(cost)
+    has_css? 'td', text: cost.price
+    has_css? 'td', text: cost.description
+    has_css? 'td', text: cost.formatted_date
+    has_css? 'td', text: cost.category.name
   end
 
   private
