@@ -11,3 +11,4 @@ UncommunicativeVariableName:
     enabled: false
 exclude_paths:
   - db/migrate
+  - factories
