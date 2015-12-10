@@ -50,3 +50,15 @@
   opacity: 1;
   filter: alpha(opacity=100);
 }
+
+.form-group {
+    margin-bottom: 5px;
+}
+
+#new_cost_submit_btn {
+  margin-top: -35px;
+}
+
+#new_cost_form_div{
+  height: 120px;
+}
