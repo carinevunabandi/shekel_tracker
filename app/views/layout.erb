@@ -14,19 +14,24 @@
     <script src="/js/sweetalert.min.js" type="text/javascript"></script>
   </head>
   <body>
-    <nav class=navbar role="navigation">
-    <div class="container" id="navigation">
-      <a class="navbar-brand" href="/"><img src="/images/shekel_tracker_logo.png" alt="Shekel Tracker logo" width="290" height="110"></a>
-      <div class="collapse navbar-collapse navbar-ex1-collapse">
-        <ul class="nav navbar-nav pull-right">
-          <li><a href="/">Home</a></li>
-          <li><a href="/budget/current">Current Budget</a></li>
-          <li><a href="/budget/past">Past Budgets</a></li>
-        </ul>
+    <nav class="navbar" role="navigation">
+    <div class="container-fluid">
+      <div id="navigation">
+        <a class="navbar-brand" href="/"><img src="/images/shekel_tracker_logo.png" alt="Shekel Tracker logo" width="290" height="110"></a>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+          <ul class="nav navbar-nav pull-right">
+            <li><a href="/">Home</a></li>
+            <li><a href="/budget/current">Current Budget</a></li>
+            <li><a href="/budget/past">Past Budgets</a></li>
+          </ul>
+        </div>
       </div>
-      <hr>
+    </div>
+    </nav>
+    <hr>
 
-      <div class="container" id="content">
+    <div class="container">
+      <div id="content">
         <% if flash[:success] %>
           <div class="alert alert-success"><%= flash[:success] %></div>
         <% end %>
